@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
+        <variable name="handlers" type="jp.co.mebro.sample.databinding.events.MainActivityEventHandlers" />
     </data>
 
     <LinearLayout
@@ -11,21 +12,26 @@
             android:id="@+id/open_search_field_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_search" />
+            android:src="@android:drawable/ic_menu_search"
+            android:onClick="@{handlers.onClickOpenSearchField}"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:minLines="1"
+                android:inputType="text"
                 android:imeOptions="actionSearch"
-                android:hint="検索" />
+                android:hint="検索"
+                android:onEditorAction="@{handlers.onEditorAction}"/>
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_menu_search"/>
+                android:src="@android:drawable/ic_menu_search"
+                android:onClick="@{handlers.onClickSearch}"/>
         </LinearLayout>
     </LinearLayout>
 </layout>

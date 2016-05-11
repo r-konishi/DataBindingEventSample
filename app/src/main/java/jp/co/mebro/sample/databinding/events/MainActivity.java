@@ -8,10 +8,13 @@ import jp.co.mebro.sample.databinding.events.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding mActivityMainBinding;
+    private MainActivityEventHandlers mMainActivityEventHandlers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        mMainActivityEventHandlers = new MainActivityEventHandlers();
+        mActivityMainBinding.setHandlers(mMainActivityEventHandlers);
     }
 }
