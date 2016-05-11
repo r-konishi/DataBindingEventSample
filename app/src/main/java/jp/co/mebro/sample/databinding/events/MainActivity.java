@@ -13,8 +13,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // DataBinding用意！
         mActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+
+        // イベントハンドラクラスの用意
         mMainActivityEventHandlers = new MainActivityEventHandlers(mActivityMainBinding);
+        // 割り当て
         mActivityMainBinding.setHandlers(mMainActivityEventHandlers);
     }
 }
