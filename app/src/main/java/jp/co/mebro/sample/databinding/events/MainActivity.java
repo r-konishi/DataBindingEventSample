@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        mMainActivityEventHandlers = new MainActivityEventHandlers();
+        mMainActivityEventHandlers = new MainActivityEventHandlers(mActivityMainBinding);
         mActivityMainBinding.setHandlers(mMainActivityEventHandlers);
     }
 }
