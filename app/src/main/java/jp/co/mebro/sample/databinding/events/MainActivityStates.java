@@ -7,6 +7,7 @@ import android.util.Log;
 public class MainActivityStates  extends BaseObservable {
     private boolean mOpenSearchFieldButtonVisible = true;
     private boolean mSearchFieldVisible = false;
+    private boolean mSearchTextFocusable = false;
 
     /**
      * コンストラクタ
@@ -30,6 +31,15 @@ public class MainActivityStates  extends BaseObservable {
      */
     public boolean getSearchFieldVisible() {
         return this.mSearchFieldVisible;
+    }
+
+    @Bindable
+    /**
+     * 検索テキストのフォーカス状態を取得する
+     * @return
+     */
+    public boolean getSearchTextFocusable() {
+        return this.mSearchTextFocusable;
     }
 
     /**
@@ -56,5 +66,15 @@ public class MainActivityStates  extends BaseObservable {
         notifyPropertyChanged(BR.searchFieldVisible);
     }
 
+    /**
+     * 検索テキストのフォーカス状態を設定する
+     * @param searchTextFocusable
+     */
+    public void setSearchTextFocusable(boolean searchTextFocusable) {
+        this.mSearchTextFocusable = searchTextFocusable;
+        Log.d("MainActivityStates", "setSearchTextFocusable");
 
+        // 変更を画面に通知
+        notifyPropertyChanged(BR.searchTextFocusable);
+    }
 }

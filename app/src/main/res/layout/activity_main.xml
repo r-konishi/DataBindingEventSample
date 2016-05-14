@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
+        <import type="android.view.View"/>
+        <variable name="states" type="jp.co.mebro.sample.databinding.events.MainActivityStates" />
         <variable name="handlers" type="jp.co.mebro.sample.databinding.events.MainActivityEventHandlers" />
     </data>
 
@@ -12,6 +14,7 @@
             android:id="@+id/open_search_field_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="@{states.openSearchFieldButtonVisible ? View.VISIBLE : View.GONE}"
             android:src="@android:drawable/ic_menu_search"
             android:onClick="@{handlers.onClickOpenSearchField}"/>
         <LinearLayout
@@ -19,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:visibility="gone">
+            android:visibility="@{states.searchFieldVisible ? View.VISIBLE : View.GONE}">
             <EditText
                 android:id="@+id/search_text_field"
                 android:layout_width="match_parent"
@@ -29,6 +32,8 @@
                 android:inputType="text"
                 android:imeOptions="actionSearch"
                 android:hint="検索"
+                android:focusable="@{states.searchTextFocusable}"
+                android:focusableInTouchMode="@{states.searchTextFocusable}"
                 android:onEditorAction="@{handlers.onEditorAction}"/>
             <ImageButton
                 android:layout_width="wrap_content"

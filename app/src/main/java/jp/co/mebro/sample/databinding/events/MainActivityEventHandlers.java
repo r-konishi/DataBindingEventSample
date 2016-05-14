@@ -7,21 +7,18 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
 
-import jp.co.mebro.sample.databinding.events.databinding.ActivityMainBinding;
-
 public class MainActivityEventHandlers {
     private String mLogTagName = "DataBindingEvents";
 
-    // TODO: 他にいい方法ありそう
-    // いろいろ操作したいので
-    private ActivityMainBinding mActivityMainBinding;
+    // 画面の状態を
+    private MainActivityStates mMainActivityStates;
 
     /**
      * コンストラクタ
-     * @param activityMainBinding
+     * @param mainActivityStates
      */
-    MainActivityEventHandlers(ActivityMainBinding activityMainBinding) {
-        mActivityMainBinding = activityMainBinding;
+    MainActivityEventHandlers(MainActivityStates mainActivityStates) {
+        this.mMainActivityStates = mainActivityStates;
     }
 
     /**
@@ -30,9 +27,9 @@ public class MainActivityEventHandlers {
      */
     public void onClickOpenSearchField(@NonNull final View view) {
         Log.d(mLogTagName, "onClickOpenSearchField");
-        view.setVisibility(View.GONE);
-        mActivityMainBinding.searchField.setVisibility(View.VISIBLE);
-        mActivityMainBinding.searchTextField.setFocusable(true);
+        this.mMainActivityStates.setOpenSearchFieldButtonVisible(false);
+        this.mMainActivityStates.setSearchFieldVisible(true);
+        this.mMainActivityStates.setSearchTextFocusable(true);
     }
 
     /**
@@ -61,12 +58,11 @@ public class MainActivityEventHandlers {
      * 検索時の処理
      */
     private void search() {
-        mActivityMainBinding.searchField.clearFocus();
-
         // TODO: DataBinding でやる
-        mActivityMainBinding.searchTextField.setText("");
+        // mActivityMainBinding.searchTextField.setText("");
 
-        mActivityMainBinding.searchField.setVisibility(View.GONE);
-        mActivityMainBinding.openSearchFieldButton.setVisibility(View.VISIBLE);
+        this.mMainActivityStates.setSearchTextFocusable(false);
+        this.mMainActivityStates.setSearchFieldVisible(false);
+        this.mMainActivityStates.setOpenSearchFieldButtonVisible(true);
     }
 }
